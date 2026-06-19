@@ -37,16 +37,19 @@ body::before{
 }
 
 #particles{
-    position:fixed;
+    position:absolute;
     inset:0;
-    z-index:5;
+    z-index:15;
+    overflow:hidden;
     pointer-events:none;
+    border-radius:30px;
 }
 
 .container{
     position:relative;
     z-index:10;
     width:min(90%,650px);
+    overflow:hidden;
     padding:40px;
     border-radius:30px;
     text-align:center;
@@ -148,8 +151,20 @@ body::before{
     top:-20px;
     border-radius:50%;
     pointer-events:none;
-    background:radial-gradient(circle,#fff9d6 0%,#ffd700 45%,#ffb300 100%);
-    box-shadow:0 0 6px #ffd700,0 0 15px #ffae00,0 0 25px rgba(255,215,0,.7);
+
+    background:radial-gradient(
+        circle,
+        #fff,
+        #ffe082,
+        #ffca28,
+        #ff9800
+    );
+
+    box-shadow:
+    0 0 8px #ffd700,
+    0 0 20px #ffca28,
+    0 0 35px rgba(255,215,0,.9);
+
     animation:goldFall linear forwards;
 }
 
@@ -167,14 +182,144 @@ body::before{
     .btn{padding:16px;font-size:17px;}
     .footer{font-size:11px;}
 }
+
+/* ===== ROCKET PRO EFFECT ===== */
+
+.rocket-launch{
+    position:fixed;
+    left:50%;
+    bottom:-250px;
+    width:70px;
+    height:180px;
+    transform:translateX(-50%);
+    z-index:999999;
+    pointer-events:none;
+    animation:rocketFly 1.6s ease-in forwards;
+}
+
+.rocket-body{
+    position:absolute;
+    width:70px;
+    height:120px;
+    background:linear-gradient(
+        to bottom,
+        #ffffff,
+        #dcdcdc,
+        #bfbfbf
+    );
+    border-radius:40px 40px 15px 15px;
+    box-shadow:
+    0 0 20px rgba(255,255,255,.8),
+    0 0 50px rgba(255,215,0,.4);
+}
+
+.rocket-window{
+    position:absolute;
+    top:25px;
+    left:50%;
+    transform:translateX(-50%);
+    width:22px;
+    height:22px;
+    border-radius:50%;
+    background:#4fc3f7;
+    border:3px solid #fff;
+}
+
+.rocket-fire{
+    position:absolute;
+    bottom:-75px;
+    left:50%;
+    transform:translateX(-50%);
+    width:26px;
+    height:90px;
+    border-radius:50%;
+    background:linear-gradient(
+        to bottom,
+        #ffffff,
+        #ffd54f,
+        #ff9800,
+        #ff5722,
+        transparent
+    );
+    filter:blur(8px);
+    animation:fireMove .08s infinite alternate;
+}
+
+@keyframes fireMove{
+    from{
+        height:80px;
+    }
+    to{
+        height:110px;
+    }
+}
+
+@keyframes rocketFly{
+    0%{
+        bottom:-250px;
+    }
+
+    15%{
+        bottom:50px;
+    }
+
+    100%{
+        bottom:130%;
+    }
+}
+
+.flash-launch{
+    position:fixed;
+    inset:0;
+    background:radial-gradient(
+        circle,
+        rgba(255,215,0,.8),
+        rgba(255,140,0,.4),
+        transparent 70%
+    );
+    opacity:0;
+    pointer-events:none;
+    z-index:999998;
+    animation:flashEffect 1.6s forwards;
+}
+
+@keyframes flashEffect{
+    0%{opacity:0;}
+    15%{opacity:1;}
+    100%{opacity:0;}
+}
+
+body.launching{
+    animation:
+    shakeLaunch .12s infinite,
+    zoomLaunch 1.6s forwards;
+}
+
+@keyframes shakeLaunch{
+    0%{transform:translate(0,0);}
+    25%{transform:translate(2px,-2px);}
+    50%{transform:translate(-2px,2px);}
+    75%{transform:translate(2px,2px);}
+    100%{transform:translate(0,0);}
+}
+
+@keyframes zoomLaunch{
+    from{
+        transform:scale(1);
+    }
+
+    to{
+        transform:scale(1.12);
+    }
+}
 </style>
 </head>
 
 <body>
 
-<div id="particles"></div>
-
 <div class="container">
+    
+<div id="particles"></div>
 
     <div class="logo">AVANZATOTO</div>
 
@@ -191,22 +336,26 @@ body::before{
     <div class="menu">
 
         <a class="btn login"
-           href="https://vxn5gdwdjc.avanza189.com/login">
+           href="#"
+           onclick="launchRocket('https://vxn5gdwdjc.avanza189.com/login');return false;">
            LOGIN
         </a>
 
         <a class="btn daftar"
-           href="https://vxn5gdwdjc.avanza189.com/register">
-           DAFTAR
+           href="#"
+           onclick="launchRocket('https://vxn5gdwdjc.avanza189.com/register');return false;">
+            DAFTAR
         </a>
 
         <a class="btn promosi"
-           href="https://vxn5gdwdjc.avanza189.com/promotion">
+           href="#"
+           onclick="launchRocket('https://vxn5gdwdjc.avanza189.com/promotion'); return false;">
            PROMOSI & BONUS
         </a>
 
         <a class="btn hubungi"
-           href="https://vxn5gdwdjc.avanza189.com/support">
+           href="#"
+           onclick="launchRocket('https://vxn5gdwdjc.avanza189.com/support'); return false;">
            HUBUNGI KAMI
         </a>
 
@@ -227,7 +376,10 @@ function createGoldParticle(){
     particle.style.width = size + "px";
     particle.style.height = size + "px";
 
-    particle.style.left = Math.random() * window.innerWidth + "px";
+const container = document.querySelector(".container");
+
+particle.style.left =
+Math.random() * container.offsetWidth + "px";
     particle.style.animationDuration = (Math.random() * 5 + 5) + "s";
 
     document.getElementById("particles").appendChild(particle);
@@ -236,6 +388,34 @@ function createGoldParticle(){
 }
 
 setInterval(createGoldParticle,120);
+</script>
+
+<script>
+
+function launchRocket(url){
+
+    document.body.classList.add("launching");
+
+    const flash = document.createElement("div");
+    flash.className = "flash-launch";
+    document.body.appendChild(flash);
+
+    const rocket = document.createElement("div");
+    rocket.className = "rocket-launch";
+   rocket.innerHTML = `
+<div class="rocket-body">
+<div class="rocket-window"></div>
+</div>
+<div class="rocket-fire"></div>
+`;
+    document.body.appendChild(rocket);
+
+    setTimeout(()=>{
+        window.location.href = url;
+    },1500);
+
+}
+
 </script>
 
 </body>
