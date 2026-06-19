@@ -46,19 +46,13 @@ body::before{
 .container{
     position:relative;
     z-index:10;
-
     width:min(90%,650px);
-
     padding:40px;
     border-radius:30px;
-
     text-align:center;
-
     background:rgba(0,0,0,.18);
     backdrop-filter:blur(5px);
-
     border:1px solid rgba(255,255,255,.12);
-
     box-shadow:
     0 0 40px rgba(255,215,0,.10),
     0 0 80px rgba(255,140,0,.08);
@@ -68,12 +62,10 @@ body::before{
     font-size:clamp(32px,9vw,60px);
     font-weight:900;
     color:#ffd700;
-
     text-shadow:
     0 0 10px #ffd700,
     0 0 20px #ffae00,
     0 0 40px #ff7b00;
-
     line-height:1.1;
     letter-spacing:2px;
     margin-bottom:15px;
@@ -89,14 +81,10 @@ body::before{
 .info{
     background:rgba(255,255,255,.08);
     backdrop-filter:blur(10px);
-
     border:1px solid rgba(255,255,255,.08);
-
     border-radius:18px;
     padding:18px;
-
     margin-bottom:30px;
-
     color:#fff;
     font-size:14px;
     line-height:1.8;
@@ -112,22 +100,16 @@ body::before{
     display:flex;
     justify-content:center;
     align-items:center;
-
     padding:18px;
-
     border-radius:16px;
-
     font-size:20px;
     font-weight:700;
-
     text-decoration:none;
-
     transition:.3s;
 }
 
 .btn:hover{
     transform:translateY(-3px) scale(1.02);
-
     box-shadow:
     0 0 20px rgba(255,215,0,.35),
     0 0 40px rgba(255,215,0,.20);
@@ -148,6 +130,12 @@ body::before{
     color:#111;
 }
 
+/* TAMBAHAN MENU BARU */
+.hubungi{
+    background:linear-gradient(135deg,#2196f3,#00bcd4);
+    color:#fff;
+}
+
 .footer{
     margin-top:25px;
     color:#ccc;
@@ -155,76 +143,29 @@ body::before{
 }
 
 /* BULIR EMAS */
-
 .gold-particle{
     position:absolute;
     top:-20px;
     border-radius:50%;
     pointer-events:none;
-
-    background:radial-gradient(
-        circle,
-        #fff9d6 0%,
-        #ffd700 45%,
-        #ffb300 100%
-    );
-
-    box-shadow:
-        0 0 6px #ffd700,
-        0 0 15px #ffae00,
-        0 0 25px rgba(255,215,0,.7);
-
+    background:radial-gradient(circle,#fff9d6 0%,#ffd700 45%,#ffb300 100%);
+    box-shadow:0 0 6px #ffd700,0 0 15px #ffae00,0 0 25px rgba(255,215,0,.7);
     animation:goldFall linear forwards;
 }
 
 @keyframes goldFall{
-
-    0%{
-        transform:translateY(-20px) translateX(0);
-        opacity:0;
-    }
-
-    10%{
-        opacity:1;
-    }
-
-    100%{
-        transform:translateY(110vh) translateX(60px);
-        opacity:0;
-    }
+    0%{transform:translateY(-20px);opacity:0;}
+    10%{opacity:1;}
+    100%{transform:translateY(110vh) translateX(60px);opacity:0;}
 }
 
-/* RESPONSIVE HP */
-
 @media(max-width:480px){
-
-    .container{
-        width:92%;
-        padding:25px 20px;
-    }
-
-    .logo{
-        font-size:clamp(28px,10vw,42px);
-        letter-spacing:1px;
-    }
-
-    .subtitle{
-        font-size:13px;
-    }
-
-    .info{
-        font-size:13px;
-        padding:14px;
-    }
-
-    .btn{
-        padding:16px;
-        font-size:17px;
-    }
-
-    .footer{
-        font-size:11px;
-    }
+    .container{width:92%;padding:25px 20px;}
+    .logo{font-size:clamp(28px,10vw,42px);}
+    .subtitle{font-size:13px;}
+    .info{font-size:13px;padding:14px;}
+    .btn{padding:16px;font-size:17px;}
+    .footer{font-size:11px;}
 }
 </style>
 </head>
@@ -264,6 +205,11 @@ body::before{
            PROMOSI & BONUS
         </a>
 
+        <a class="btn hubungi"
+           href="https://vxn5gdwdjc.avanza189.com/support">
+           HUBUNGI KAMI
+        </a>
+
     </div>
 
     <div class="footer">
@@ -273,34 +219,23 @@ body::before{
 </div>
 
 <script>
-
 function createGoldParticle(){
-
     const particle = document.createElement("div");
     particle.className = "gold-particle";
 
     const size = Math.random() * 8 + 2;
-
     particle.style.width = size + "px";
     particle.style.height = size + "px";
 
-    particle.style.left =
-        Math.random() * window.innerWidth + "px";
+    particle.style.left = Math.random() * window.innerWidth + "px";
+    particle.style.animationDuration = (Math.random() * 5 + 5) + "s";
 
-    particle.style.animationDuration =
-        (Math.random() * 5 + 5) + "s";
+    document.getElementById("particles").appendChild(particle);
 
-    document
-        .getElementById("particles")
-        .appendChild(particle);
-
-    setTimeout(()=>{
-        particle.remove();
-    },12000);
+    setTimeout(()=> particle.remove(),12000);
 }
 
 setInterval(createGoldParticle,120);
-
 </script>
 
 </body>
