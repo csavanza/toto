@@ -8,164 +8,159 @@
 
 <style>
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
 }
 
 body{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:url('background.jpg') center center/cover no-repeat;
-overflow:hidden;
-position:relative;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:url('background.jpg') center center/cover no-repeat;
+    overflow:hidden;
+    position:relative;
 }
 
 body::before{
-content:"";
-position:absolute;
-inset:0;
-background:
-linear-gradient(
-135deg,
-rgba(0,0,0,.75),
-rgba(0,0,0,.55)
-);
-backdrop-filter:blur(4px);
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        135deg,
+        rgba(0,0,0,.75),
+        rgba(0,0,0,.55)
+    );
+    backdrop-filter:blur(4px);
+}
+
+#particles{
+    position:fixed;
+    inset:0;
+    z-index:5;
+    pointer-events:none;
 }
 
 .container{
-position:relative;
-z-index:10;
-width:90%;
-max-width:650px;
-padding:40px;
-border-radius:25px;
+    position:relative;
+    z-index:10;
 
-.container{
-    background:transparent;
-    backdrop-filter:none;
-    box-shadow:none;
-    border:none;
-}
+    width:min(90%,650px);
 
-border:1px solid rgba(255,255,255,.15);
+    padding:40px;
+    border-radius:30px;
 
-box-shadow:
-0 0 50px rgba(255,215,0,.15),
-0 0 120px rgba(255,140,0,.08);
+    text-align:center;
 
-text-align:center;
+    background:rgba(0,0,0,.18);
+    backdrop-filter:blur(5px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    box-shadow:
+    0 0 40px rgba(255,215,0,.10),
+    0 0 80px rgba(255,140,0,.08);
 }
 
 .logo{
-font-size:60px;
-font-weight:900;
-color:#ffd700;
+    font-size:clamp(32px,9vw,60px);
+    font-weight:900;
+    color:#ffd700;
 
-text-shadow:
-0 0 10px #ffd700,
-0 0 20px #ffae00,
-0 0 40px #ff7b00;
+    text-shadow:
+    0 0 10px #ffd700,
+    0 0 20px #ffae00,
+    0 0 40px #ff7b00;
 
-margin-bottom:10px;
-letter-spacing:3px;
+    line-height:1.1;
+    letter-spacing:2px;
+    margin-bottom:15px;
 }
 
 .subtitle{
-color:#ddd;
-font-size:15px;
-margin-bottom:35px;
+    color:#e5e5e5;
+    font-size:15px;
+    line-height:1.5;
+    margin-bottom:30px;
 }
 
 .info{
-background:rgba(255,255,255,.06);
-border-radius:15px;
-padding:15px;
-margin-bottom:30px;
-color:#fff;
-line-height:1.6;
-font-size:14px;
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+    padding:18px;
+
+    margin-bottom:30px;
+
+    color:#fff;
+    font-size:14px;
+    line-height:1.8;
 }
 
 .menu{
-display:flex;
-flex-direction:column;
-gap:15px;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
 }
 
 .btn{
-display:flex;
-justify-content:center;
-align-items:center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-padding:18px;
-border-radius:15px;
+    padding:18px;
 
-font-size:18px;
-font-weight:bold;
-text-decoration:none;
+    border-radius:16px;
 
-transition:.3s;
-}
+    font-size:20px;
+    font-weight:700;
 
-.login{
-background:linear-gradient(135deg,#ff9800,#ff5722);
-color:#fff;
-}
+    text-decoration:none;
 
-.daftar{
-background:linear-gradient(135deg,#00c853,#00e676);
-color:#fff;
-}
-
-.promosi{
-background:linear-gradient(135deg,#ffd600,#ffab00);
-color:#111;
+    transition:.3s;
 }
 
 .btn:hover{
-transform:translateY(-4px) scale(1.02);
+    transform:translateY(-3px) scale(1.02);
 
-box-shadow:
-0 0 20px rgba(255,215,0,.4),
-0 0 40px rgba(255,215,0,.25);
+    box-shadow:
+    0 0 20px rgba(255,215,0,.35),
+    0 0 40px rgba(255,215,0,.20);
+}
+
+.login{
+    background:linear-gradient(135deg,#ff9800,#ff5722);
+    color:#fff;
+}
+
+.daftar{
+    background:linear-gradient(135deg,#00c853,#00e676);
+    color:#fff;
+}
+
+.promosi{
+    background:linear-gradient(135deg,#ffd600,#ffab00);
+    color:#111;
 }
 
 .footer{
-margin-top:25px;
-font-size:12px;
-color:#bbb;
+    margin-top:25px;
+    color:#ccc;
+    font-size:12px;
 }
 
-.particle{
-position:absolute;
-width:4px;
-height:4px;
-background:#ffd700;
-border-radius:50%;
-opacity:.6;
-animation:float 8s linear infinite;
-}
-
-@keyframes float{
-from{
-transform:translateY(100vh);
-}
-to{
-transform:translateY(-120px);
-}
-}
+/* BULIR EMAS */
 
 .gold-particle{
-    position:fixed;
+    position:absolute;
     top:-20px;
     border-radius:50%;
     pointer-events:none;
-    z-index:2;
 
     background:radial-gradient(
         circle,
@@ -183,6 +178,7 @@ transform:translateY(-120px);
 }
 
 @keyframes goldFall{
+
     0%{
         transform:translateY(-20px) translateX(0);
         opacity:0;
@@ -198,53 +194,81 @@ transform:translateY(-120px);
     }
 }
 
+/* RESPONSIVE HP */
+
+@media(max-width:480px){
+
+    .container{
+        width:92%;
+        padding:25px 20px;
+    }
+
+    .logo{
+        font-size:clamp(28px,10vw,42px);
+        letter-spacing:1px;
+    }
+
+    .subtitle{
+        font-size:13px;
+    }
+
+    .info{
+        font-size:13px;
+        padding:14px;
+    }
+
+    .btn{
+        padding:16px;
+        font-size:17px;
+    }
+
+    .footer{
+        font-size:11px;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<div class="particle" style="left:10%;animation-delay:0s"></div>
-<div class="particle" style="left:25%;animation-delay:2s"></div>
-<div class="particle" style="left:40%;animation-delay:4s"></div>
-<div class="particle" style="left:60%;animation-delay:1s"></div>
-<div class="particle" style="left:80%;animation-delay:3s"></div>
+<div id="particles"></div>
 
 <div class="container">
 
-<div class="logo">AVANZATOTO</div>
+    <div class="logo">AVANZATOTO</div>
 
-<div class="subtitle">
-Situs Game Online Resmi Terbaik Dan Terpercaya
-</div>
+    <div class="subtitle">
+        Situs Game Online Resmi Terbaik Dan Terpercaya
+    </div>
 
-<div class="info">
-✨ Tampilan Premium<br>
-⚡ Akses Cepat & Responsif<br>
-📱 Optimal untuk Mobile & Desktop
-</div>
+    <div class="info">
+        ✨ Tampilan Premium<br>
+        ⚡ Akses Cepat & Responsif<br>
+        📱 Optimal untuk Mobile & Desktop
+    </div>
 
-<div class="menu">
+    <div class="menu">
 
-<a class="btn login"
-href="https://vxn5gdwdjc.avanza189.com/login">
-LOGIN
-</a>
+        <a class="btn login"
+           href="https://vxn5gdwdjc.avanza189.com/login">
+           LOGIN
+        </a>
 
-<a class="btn daftar"
-href="https://vxn5gdwdjc.avanza189.com/register">
-DAFTAR
-</a>
+        <a class="btn daftar"
+           href="https://vxn5gdwdjc.avanza189.com/register">
+           DAFTAR
+        </a>
 
-<a class="btn promosi"
-href="https://vxn5gdwdjc.avanza189.com/promotion">
-PROMOSI & BONUS
-</a>
+        <a class="btn promosi"
+           href="https://vxn5gdwdjc.avanza189.com/promotion">
+           PROMOSI & BONUS
+        </a>
 
-</div>
+    </div>
 
-<div class="footer">
-© 2026 AVANZATOTO
-</div>
+    <div class="footer">
+        © 2026 AVANZATOTO
+    </div>
 
 </div>
 
@@ -255,7 +279,7 @@ function createGoldParticle(){
     const particle = document.createElement("div");
     particle.className = "gold-particle";
 
-    const size = Math.random() * 7 + 2;
+    const size = Math.random() * 8 + 2;
 
     particle.style.width = size + "px";
     particle.style.height = size + "px";
@@ -266,14 +290,16 @@ function createGoldParticle(){
     particle.style.animationDuration =
         (Math.random() * 5 + 5) + "s";
 
-    document.body.appendChild(particle);
+    document
+        .getElementById("particles")
+        .appendChild(particle);
 
-    setTimeout(() => {
+    setTimeout(()=>{
         particle.remove();
-    }, 12000);
+    },12000);
 }
 
-setInterval(createGoldParticle, 120);
+setInterval(createGoldParticle,120);
 
 </script>
 
