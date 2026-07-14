@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2 family=Marcellus&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 /* --- BASE & ULTRA PREMIUM UTILITIES --- */
@@ -16,24 +16,31 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    -webkit-tap-highlight-color: transparent; /* Menghapus warna biru saat ditekan di Android */
+    -webkit-tap-highlight-color: transparent; /* Menghapus flash box biru bawaan browser HP */
 }
 
 body {
     color: #f0f3f8;
-    overflow-x: hidden;
-    
-    /* LAPISAN HITAM DIBUAT TRANSPARAN AGAR BACKGROUND UTAMA SANGAT JELAS */
-    background: linear-gradient(180deg, rgba(2, 6, 16, 0.25) 0%, rgba(1, 3, 9, 0.45) 100%), url('background.jpg');
-    
-    /* TETAP MENGIKUTI UKURAN POPUP (MEMBANYAK SAAT MENGECIL) */
-    background-repeat: repeat; 
-    background-size: 340px auto; 
-    
-    /* DIOPTIMALKAN UNTUK HP ANDROID AGAR STABIL & TIDAK GOYANG SAAT DI-SCROLL */
-    background-position: top center;
-    background-attachment: scroll; 
     background-color: #010309;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* TRIK UNTUK HP ANDROID: Menggunakan pseudo-element agar background mengunci mati (diam & tidak goyang) saat di-scroll */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Mengurangi kepekatan gradasi hitam agar background.jpg di bawahnya sangat menonjol */
+    background: linear-gradient(180deg, rgba(2, 6, 16, 0.2) 0%, rgba(1, 3, 9, 0.45) 100%), url('background.jpg');
+    background-repeat: repeat; 
+    background-size: 340px auto; /* Ukuran pas, tidak kekecilan */
+    background-position: top center;
+    z-index: -1;
+    will-change: transform;
 }
 
 .container {
@@ -120,15 +127,15 @@ body {
     color: #ffffff;
     padding: 20px 26px;
     
-    /* POPUP MENU SEKARANG LEBIH TRANSPARAN AGAR BACKGROUND TEMBUS KELIHATAN */
+    /* DIATUR JAUH LEBIH TRANSPARAN AGAR BACKGROUND TEMBUS */
     background: rgba(255, 255, 255, 0.01);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.04);
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.03);
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.02);
+    transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .menu-info {
@@ -161,21 +168,28 @@ body {
     border-radius: 30px;
     background: rgba(0, 0, 0, 0.4);
     color: rgba(255, 255, 255, 0.6);
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
+/* HOVER EFEK UNTUK DESKTOP */
 .menu-item:hover {
     transform: translateY(-4px);
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.04);
     border-color: rgba(230, 182, 66, 0.4);
     box-shadow: 0 15px 35px rgba(230, 182, 66, 0.1);
 }
-
 .menu-item:hover .explore-btn {
     color: #1a1100;
     background: #e6b642;
     border-color: #e6b642;
     box-shadow: 0 0 15px rgba(230, 182, 66, 0.5);
+}
+
+/* EFEK RESPONS TEKAN DI HP (CLICK/TAP FEELING) */
+.menu-item:active {
+    transform: scale(0.97) translateY(0);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(230, 182, 66, 0.6);
 }
 
 /* --- THE NEW 3D SHOWCASE CARDS --- */
@@ -190,30 +204,16 @@ body {
     border-radius: 24px;
     text-align: center;
     
-    /* POPUP KARTU UTAMA JUGA LEBIH TRANSPARAN AGAR BACKGROUND TEMBUS */
-    background: linear-gradient(180deg, rgba(9, 17, 34, 0.65) 0%, rgba(3, 7, 16, 0.80) 100%);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    /* POPUP UTAMA DI GAMBAR DIBUAT DUA KALI LIPAT LEBIH TRANSPARAN AGAR BACKGROUND TEMBUS */
+    background: linear-gradient(180deg, rgba(9, 17, 34, 0.35) 0%, rgba(3, 7, 16, 0.55) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     
-    border: 1px solid rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.03);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 20px 45px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.03);
-    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* Glass glare overlay effect */
-.card::after {
-    content: '';
-    position: absolute;
-    top: -50%; left: -50%; width: 200%; height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
-    transform: rotate(45deg);
-    transition: all 0.6s ease;
-}
-
-.card:hover::after {
-    left: 100%;
+    box-shadow: 0 20px 45px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.02);
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .card-icon-wrapper {
@@ -224,10 +224,9 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 22px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-    transition: all 0.4s ease;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
 .card i {
@@ -244,9 +243,10 @@ body {
 .card p {
     font-size: 14px;
     line-height: 1.6;
-    color: #8f9bb3;
+    color: #cdd6e4; /* Kontras warna teks ditingkatkan sedikit agar tetap terbaca jelas */
     margin-bottom: 35px;
     min-height: 68px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
 }
 
 .card-btn {
@@ -262,45 +262,43 @@ body {
     text-transform: uppercase;
     position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 .card:hover {
     transform: translateY(-10px);
 }
 
+/* RESPONS KETIKA TOMBOL DI DALAM KARTU DITEKAN DI HP */
+.card-btn:active {
+    transform: scale(0.96);
+    filter: brightness(0.85) !important;
+}
+
 /* BRAND COLOR CHROMATICS ROW */
 /* BLUE CONCEPT */
-.blue { border-color: rgba(0, 162, 255, 0.15); }
+.blue { border-color: rgba(0, 162, 255, 0.1); }
 .blue i, .blue h2 { color: #33b6ff; filter: drop-shadow(0 0 10px rgba(0, 162, 255, 0.3)); }
-.blue .card-icon-wrapper { border-color: rgba(0, 162, 255, 0.2); background: rgba(0, 162, 255, 0.02); }
 .blue .card-btn { background: linear-gradient(135deg, #0052d4, #4364f7); box-shadow: 0 6px 20px rgba(67, 100, 247, 0.35); }
-.blue:hover { border-color: rgba(0, 162, 255, 0.4); box-shadow: 0 25px 50px rgba(0, 162, 255, 0.15); }
-.blue .card-btn:hover { box-shadow: 0 8px 25px rgba(67, 100, 247, 0.6); filter: brightness(1.15); }
+.blue:hover { border-color: rgba(0, 162, 255, 0.3); box-shadow: 0 25px 50px rgba(0, 162, 255, 0.15); }
 
 /* PURPLE CONCEPT */
-.purple { border-color: rgba(176, 0, 255, 0.15); }
+.purple { border-color: rgba(176, 0, 255, 0.1); }
 .purple i, .purple h2 { color: #d26dff; filter: drop-shadow(0 0 10px rgba(176, 0, 255, 0.3)); }
-.purple .card-icon-wrapper { border-color: rgba(176, 0, 255, 0.2); background: rgba(176, 0, 255, 0.02); }
 .purple .card-btn { background: linear-gradient(135deg, #5110bc, #892cdc); box-shadow: 0 6px 20px rgba(137, 44, 220, 0.35); }
-.purple:hover { border-color: rgba(176, 0, 255, 0.4); box-shadow: 0 25px 50px rgba(176, 0, 255, 0.15); }
-.purple .card-btn:hover { box-shadow: 0 8px 25px rgba(137, 44, 220, 0.6); filter: brightness(1.15); }
+.purple:hover { border-color: rgba(176, 0, 255, 0.3); box-shadow: 0 25px 50px rgba(176, 0, 255, 0.15); }
 
 /* GOLD CONCEPT */
-.gold { border-color: rgba(255, 179, 0, 0.15); }
+.gold { border-color: rgba(255, 179, 0, 0.1); }
 .gold i, .gold h2 { color: #ffd43b; filter: drop-shadow(0 0 10px rgba(255, 179, 0, 0.3)); }
-.gold .card-icon-wrapper { border-color: rgba(255, 179, 0, 0.2); background: rgba(255, 179, 0, 0.02); }
 .gold .card-btn { background: linear-gradient(135deg, #b8860b, #e6b642); color: #160e00; box-shadow: 0 6px 20px rgba(230, 182, 66, 0.35); }
-.gold:hover { border-color: rgba(255, 179, 0, 0.4); box-shadow: 0 25px 50px rgba(255, 179, 0, 0.15); }
-.gold .card-btn:hover { box-shadow: 0 8px 25px rgba(230, 182, 66, 0.6); filter: brightness(1.15); }
+.gold:hover { border-color: rgba(255, 179, 0, 0.3); box-shadow: 0 25px 50px rgba(255, 179, 0, 0.15); }
 
 /* GREEN CONCEPT */
-.green { border-color: rgba(0, 255, 85, 0.15); }
+.green { border-color: rgba(0, 255, 85, 0.1); }
 .green i, .green h2 { color: #4dff8d; filter: drop-shadow(0 0 10px rgba(0, 255, 85, 0.3)); }
-.green .card-icon-wrapper { border-color: rgba(0, 255, 85, 0.2); background: rgba(0, 255, 85, 0.02); }
 .green .card-btn { background: linear-gradient(135deg, #007029, #00b344); box-shadow: 0 6px 20px rgba(0, 179, 68, 0.35); }
-.green:hover { border-color: rgba(0, 255, 85, 0.4); box-shadow: 0 25px 50px rgba(0, 255, 85, 0.15); }
-.green .card-btn:hover { box-shadow: 0 8px 25px rgba(0, 179, 68, 0.6); filter: brightness(1.15); }
+.green:hover { border-color: rgba(0, 255, 85, 0.3); box-shadow: 0 25px 50px rgba(0, 255, 85, 0.15); }
 
 /* --- TRUST MATRIX FOOTER BAR --- */
 .features {
@@ -316,12 +314,11 @@ body {
     align-items: center;
     text-align: center;
     padding: 24px 20px;
-    background: rgba(4, 9, 20, 0.35); /* Footer juga dibuat lebih transparan */
-    backdrop-filter: blur(10px);
+    background: rgba(4, 9, 20, 0.2); 
+    backdrop-filter: blur(8px);
     border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.02);
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    transition: all 0.3s;
 }
 
 .feature i {
@@ -343,15 +340,9 @@ body {
 
 .feature-text p {
     font-size: 12px;
-    color: #6c7a96;
+    color: #a0aec0;
     margin-top: 4px;
     line-height: 1.4;
-}
-
-.feature:hover {
-    border-color: rgba(255,255,255,0.1);
-    background: rgba(4, 9, 20, 0.6);
-    transform: translateY(-2px);
 }
 
 /* --- ANIMATION KEYFRAMES --- */
@@ -381,7 +372,7 @@ body {
 
 @media(max-width: 768px) {
     .container {
-        padding: 25px 12px; /* Kerapatan disesuaikan pas untuk HP Android */
+        padding: 25px 12px;
     }
     .avanza-title {
         font-size: 50px;
@@ -400,18 +391,18 @@ body {
         gap: 20px;
     }
     .features {
-        grid-template-columns: repeat(2, 1fr); /* Di HP Android tampil 2 kolom agar seimbang */
+        grid-template-columns: repeat(2, 1fr);
         gap: 12px;
     }
     .feature:last-child {
-        grid-column: span 2; /* Sisa box fitur terakhir memenuhi baris */
+        grid-column: span 2;
     }
     .card p {
         min-height: auto;
         margin-bottom: 25px;
     }
-    body {
-        background-size: 240px auto; /* Ukuran background di HP disesuaikan proporsional agar tidak terlalu raksasa */
+    body::before {
+        background-size: 260px auto; /* Skala ubin dioptimasi agar pas untuk rasio layar HP */
     }
 }
 
