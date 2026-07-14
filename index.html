@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>AVANZATOTO - Ultra Premium Gaming Interface</title>
+
+<link rel="icon" type="image/png" href="logo.png">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +19,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    -webkit-tap-highlight-color: transparent; /* Menghapus flash biru saat klik di Android */
+    -webkit-tap-highlight-color: transparent; /* Menghapus kotak biru bawaan browser HP saat menu ditekan */
 }
 
 body {
@@ -26,7 +29,7 @@ body {
     min-height: 100vh;
 }
 
-/* TRIK HP ANDROID: Mengunci mati background agar diam sempurna & stabil saat di-scroll */
+/* TRIK HP MOBILE: Mengunci mati gambar latar belakang agar diam sempurna & stabil saat di-scroll */
 body::before {
     content: "";
     position: fixed;
@@ -34,7 +37,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    /* Gradasi dibuat super transparan (0.15 & 0.4) agar gambar background.jpg terlihat sangat jelas */
+    /* Gradasi dibuat sangat tipis transparan (0.15 & 0.4) agar gambar background.jpg terlihat jelas menembus menu */
     background: linear-gradient(180deg, rgba(2, 6, 16, 0.15) 0%, rgba(1, 3, 9, 0.4) 100%), url('background.jpg');
     background-repeat: repeat; 
     background-size: 340px auto; 
@@ -54,7 +57,7 @@ body::before {
 /* --- MASTER HEADER & METALLIC ANIMATION --- */
 .logo {
     text-align: center;
-    padding: 10px 0 25px; /* Jarak bawah dikurangi sedikit agar pas dengan teks berjalan */
+    padding: 10px 0 25px;
     position: relative;
 }
 
@@ -139,7 +142,7 @@ body::before {
     text-shadow: 0 0 8px rgba(255, 255, 255, 0.2);
 }
 
-/* Membuat teks penekanan "YA BOSKU" berwarna emas berkilau */
+/* Aksen teks emas berkilau khusus kata BOSKU */
 .marquee-content span {
     background: linear-gradient(135deg, #fff099, #e6b642);
     -webkit-background-clip: text;
@@ -163,7 +166,7 @@ body::before {
     color: #ffffff;
     padding: 20px 26px;
     
-    /* POPUP MENU SANGAT TRANSPARAN AGAR BACKGROUND TEMBUS JELAS */
+    /* DIBUAT ULTRA TRANSPARAN AGAR BACKGROUND DI BELAKANGNYA TEMBUS */
     background: rgba(255, 255, 255, 0.01);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
@@ -207,7 +210,7 @@ body::before {
     transition: all 0.2s ease;
 }
 
-/* Efek Hover untuk PC/Desktop */
+/* Hover Efek PC/Desktop */
 .menu-item:hover {
     transform: translateY(-4px);
     background: rgba(255, 255, 255, 0.04);
@@ -221,7 +224,7 @@ body::before {
     box-shadow: 0 0 15px rgba(230, 182, 66, 0.5);
 }
 
-/* RESPONS INSTAN ELEMEN SAAT DITEKAN DI HP (CLICK FEEDBACK) */
+/* RESPONS INSTAN ELEMEN SAAT DITEKAN DI HP (CLICK FEEDBACK REALTIME) */
 .menu-item:active {
     transform: scale(0.97) translateY(0);
     background: rgba(255, 255, 255, 0.08);
@@ -240,7 +243,7 @@ body::before {
     border-radius: 24px;
     text-align: center;
     
-    /* POPUP KARTU UTAMA DIBUAT TRANSPARAN TEMBUS PANDANG */
+    /* KEBENINGAN KOTAK CARD UTAMA DIOPTIMALKAN AGAR TEMBUS PANDANG */
     background: linear-gradient(180deg, rgba(9, 17, 34, 0.35) 0%, rgba(3, 7, 16, 0.55) 100%);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -279,7 +282,7 @@ body::before {
 .card p {
     font-size: 14px;
     line-height: 1.6;
-    color: #dbe4f0; /* Kontras dinaikkan sedikit agar teks tetap terbaca sangat jelas di atas background transparan */
+    color: #dbe4f0; /* Kontras warna teks dinaikkan agar teks putih tetap tajam terbaca jelas */
     margin-bottom: 35px;
     min-height: 68px;
     text-shadow: 0 2px 4px rgba(0,0,0,0.9);
@@ -305,7 +308,7 @@ body::before {
     transform: translateY(-10px);
 }
 
-/* RESPONS INSTAN TOMBOL UTAMA SAAT DITEKAN DI LAYAR HP */
+/* RESPONS INSTAN TOMBOL UTAMA KETIKA DITAP / DIKLIK OLEH JARI DI HP */
 .card-btn:active {
     transform: scale(0.96);
     filter: brightness(0.85) !important;
@@ -393,7 +396,7 @@ body::before {
     100% { background-position: 200% center; }
 }
 
-/* Keyframe untuk kehalusan teks berjalan (marquee) dari kanan ke kiri */
+/* Keyframe animasi untuk kelancaran teks berjalan marquee */
 @keyframes marquee-speed {
     0% { transform: translate3d(0, 0, 0); }
     100% { transform: translate3d(-100%, 0, 0); }
@@ -451,7 +454,7 @@ body::before {
         margin-bottom: 25px;
     }
     body::before {
-        background-size: 260px auto; /* Skala ubin gambar di HP Android agar rapi */
+        background-size: 260px auto; /* Skala ubin gambar di layar HP agar proporsional */
     }
 }
 
@@ -477,7 +480,7 @@ body::before {
 
     <div class="running-text-container">
         <div class="marquee-content">
-            AVANZATOTO SITUS GAME ONLINE RESMI TERBAIK DAN TERPERCAYA <span>BOSKU</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            AVANZATOTO SITUS GAME ONLINE RESMI TERBAIK DAN TERPERCAYA YA <span>BOSKU</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
     </div>
 
