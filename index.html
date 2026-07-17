@@ -29,13 +29,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* --- BASE & ULTRA PREMIUM UTILITIES --- */
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Plus Jakarta Sans', sans-serif;
     -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    width: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -45,7 +49,6 @@ body {
     min-height: 100vh;
 }
 
-/* TRIK HP MOBILE: Mengunci mati gambar latar belakang agar diam sempurna & stabil */
 body::before {
     content: "";
     position: fixed;
@@ -54,8 +57,8 @@ body::before {
     width: 100%;
     height: 100%;
     background: linear-gradient(180deg, rgba(2, 6, 16, 0.15) 0%, rgba(1, 3, 9, 0.4) 100%), url('background.jpg');
-    background-repeat: repeat; 
-    background-size: 340px auto; 
+    background-repeat: repeat;
+    background-size: 340px auto;
     background-position: top center;
     z-index: -1;
     will-change: transform;
@@ -69,7 +72,6 @@ body::before {
     z-index: 2;
 }
 
-/* --- MASTER HEADER & METALLIC ANIMATION --- */
 .logo {
     text-align: center;
     padding: 10px 0 25px;
@@ -100,7 +102,6 @@ body::before {
     text-transform: uppercase;
     display: block;
     position: relative;
-    
     background: linear-gradient(90deg, #b98e2f, #fcf3c3, #d4a943, #ffffff, #d4a943, #fcf3c3, #b98e2f);
     background-size: 200% auto;
     -webkit-background-clip: text;
@@ -129,7 +130,6 @@ body::before {
     margin: 12px auto 0;
 }
 
-/* --- PREMIUM TEXT BERJALAN (RUNNING MARQUEE) --- */
 .running-text-container {
     width: 100%;
     overflow: hidden;
@@ -164,21 +164,22 @@ body::before {
     font-weight: 800;
 }
 
-/* --- LUXURY NAV BAR --- */
 .menu {
     display: grid;
-    grid-template-columns: repeat(6, 1fr); /* Disesuaikan untuk 6 menu */
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 15px;
     margin-bottom: 40px;
 }
 
 .menu-item {
+    min-width: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 10px;
     text-decoration: none;
     color: #ffffff;
-    padding: 18px 20px;
+    padding: 16px 14px;
     background: rgba(255, 255, 255, 0.01);
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
@@ -186,16 +187,21 @@ body::before {
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.02);
     transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    min-height: 62px;
 }
 
 .menu-info {
+    min-width: 0;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+    flex: 1;
+    overflow: hidden;
 }
 
 .menu-info i {
-    font-size: 20px;
+    flex-shrink: 0;
+    font-size: 18px;
     color: #e6b642;
     background: linear-gradient(135deg, #fff099, #e6b642);
     -webkit-background-clip: text;
@@ -203,22 +209,29 @@ body::before {
 }
 
 .menu-title {
+    display: block;
+    min-width: 0;
     font-weight: 800;
-    font-size: 13px; /* Sedikit dikecilkan agar seimbang di layar laptop sedang */
-    letter-spacing: 1px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .explore-btn {
+    flex-shrink: 0;
     font-size: 9px;
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    padding: 4px 10px;
+    padding: 4px 8px;
     border: 1px solid rgba(255,255,255,0.15);
     border-radius: 30px;
     background: rgba(0, 0, 0, 0.4);
     color: rgba(255, 255, 255, 0.6);
     transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 .menu-item:hover {
@@ -227,6 +240,7 @@ body::before {
     border-color: rgba(230, 182, 66, 0.4);
     box-shadow: 0 15px 35px rgba(230, 182, 66, 0.1);
 }
+
 .menu-item:hover .explore-btn {
     color: #1a1100;
     background: #e6b642;
@@ -240,10 +254,9 @@ body::before {
     border-color: rgba(230, 182, 66, 0.6);
 }
 
-/* --- SHOWCASE CARDS --- */
 .cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Disesuaikan ke 3 kolom agar layout 6 kartu terlihat seimbang (3 atas, 3 bawah) */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 28px;
 }
 
@@ -319,7 +332,6 @@ body::before {
     filter: brightness(0.85) !important;
 }
 
-/* CHROMATICS COLOR STYLES */
 .blue { border-color: rgba(0, 162, 255, 0.1); }
 .blue i, .blue h2 { color: #33b6ff; filter: drop-shadow(0 0 10px rgba(0, 162, 255, 0.3)); }
 .blue .card-btn { background: linear-gradient(135deg, #0052d4, #4364f7); box-shadow: 0 6px 20px rgba(67, 100, 247, 0.35); }
@@ -340,7 +352,6 @@ body::before {
 .green .card-btn { background: linear-gradient(135deg, #007029, #00b344); box-shadow: 0 6px 20px rgba(0, 179, 68, 0.35); }
 .green:hover { border-color: rgba(0, 255, 85, 0.3); box-shadow: 0 25px 50px rgba(0, 255, 85, 0.15); }
 
-/* GAYA WARNA BARU UNTUK 2 MENU TAMBAHAN */
 .red { border-color: rgba(255, 46, 46, 0.1); }
 .red i, .red h2 { color: #ff5c5c; filter: drop-shadow(0 0 10px rgba(255, 46, 46, 0.3)); }
 .red .card-btn { background: linear-gradient(135deg, #990000, #ff2e2e); box-shadow: 0 6px 20px rgba(255, 46, 46, 0.35); }
@@ -351,11 +362,10 @@ body::before {
 .cyan .card-btn { background: linear-gradient(135deg, #005bea, #00c6ff); box-shadow: 0 6px 20px rgba(0, 198, 255, 0.35); }
 .cyan:hover { border-color: rgba(0, 242, 254, 0.3); box-shadow: 0 25px 50px rgba(0, 242, 254, 0.15); }
 
-/* --- TRUST MATRIX FOOTER BAR --- */
 .features {
     margin-top: 60px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 20px;
 }
 
@@ -365,7 +375,7 @@ body::before {
     align-items: center;
     text-align: center;
     padding: 24px 20px;
-    background: rgba(4, 9, 20, 0.2); 
+    background: rgba(4, 9, 20, 0.2);
     backdrop-filter: blur(8px);
     border-radius: 18px;
     border: 1px solid rgba(255, 255, 255, 0.02);
@@ -396,7 +406,6 @@ body::before {
     line-height: 1.4;
 }
 
-/* --- SEO ARTICLE CONTENT SECTION STYLE --- */
 .seo-section {
     margin-top: 60px;
     padding: 35px 25px;
@@ -429,7 +438,6 @@ body::before {
     color: #ffffff;
 }
 
-/* --- ANIMATION KEYFRAMES --- */
 @keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-8px); }
@@ -446,11 +454,10 @@ body::before {
     100% { transform: translate3d(-100%, 0, 0); }
 }
 
-/* --- ADAPTIVE RESPONSIVE FRAMEWORK --- */
 @media(max-width: 1200px) {
-    .menu { grid-template-columns: repeat(3, 1fr); } /* Melipat rapi menjadi 3x2 di layar tablet besar */
-    .cards { grid-template-columns: repeat(2, 1fr); } /* Melipat rapi menjadi 2x3 */
-    .features { grid-template-columns: repeat(3, 1fr); }
+    .menu { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .features { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .avanza-title { font-size: 74px; }
 }
 
@@ -460,9 +467,12 @@ body::before {
     .tagline { font-size: 11px; letter-spacing: 3px; }
     .running-text-container { padding: 10px 16px; margin-bottom: 25px; }
     .marquee-content { font-size: 12px; }
-    .menu { grid-template-columns: repeat(2, 1fr); gap: 12px; } /* Melipat rapi menjadi 2x3 di layar HP */
-    .cards { grid-template-columns: 1fr; gap: 20px; } /* 1 kartu per baris di layar HP */
-    .features { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .menu { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .menu-item { min-height: 58px; padding: 14px 12px; }
+    .menu-title { font-size: 11px; }
+    .explore-btn { font-size: 8px; padding: 4px 7px; }
+    .cards { grid-template-columns: 1fr; gap: 20px; }
+    .features { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
     .feature:last-child { grid-column: span 2; }
     .card p { min-height: auto; margin-bottom: 25px; }
     body::before { background-size: 260px auto; }
@@ -470,7 +480,11 @@ body::before {
 
 @media(max-width: 480px) {
     .avanza-title { font-size: 40px; letter-spacing: 2px; }
-    .menu { grid-template-columns: 1fr; gap: 10px; } /* Menjadi 1 kolom penuh di layar HP sangat kecil */
+    .menu { grid-template-columns: 1fr; gap: 10px; }
+    .menu-item { padding: 14px 12px; min-height: 54px; }
+    .menu-info { gap: 8px; }
+    .menu-info i { font-size: 16px; }
+    .explore-btn { font-size: 8px; padding: 3px 7px; }
 }
 </style>
 </head>
@@ -533,7 +547,6 @@ body::before {
             <span class="explore-btn">Explore</span>
         </a>
 
-        <!-- MENU BARU 1 (NAVIGASI) -->
         <a href="https://lnqblejkcd.avanza189.com/forgot/password" class="menu-item">
             <div class="menu-info">
                 <i class="fa-solid fa-key"></i>
@@ -544,7 +557,6 @@ body::before {
             <span class="explore-btn">Explore</span>
         </a>
 
-        <!-- MENU BARU 2 (NAVIGASI) -->
         <a href="https://hokishj.com/avanzatoto.apk" class="menu-item">
             <div class="menu-info">
                 <i class="fa-solid fa-download"></i>
@@ -593,7 +605,6 @@ body::before {
             <a href="https://vxn5gdwdjc.avanza189.com/support" class="card-btn">Connect</a>
         </div>
 
-        <!-- MENU BARU 1 (KARTU UTAMA) -->
         <div class="card red">
             <div class="card-icon-wrapper">
                 <i class="fa-solid fa-key"></i>
@@ -603,7 +614,6 @@ body::before {
             <a href="https://lnqblejkcd.avanza189.com/forgot/password" class="card-btn">Reset Password</a>
         </div>
 
-        <!-- MENU BARU 2 (KARTU UTAMA) -->
         <div class="card cyan">
             <div class="card-icon-wrapper">
                 <i class="fa-solid fa-mobile-screen-button"></i>
